@@ -10,7 +10,7 @@ class Triangle:
 
     def predict(self, x):
         if self.x1 <= x <= self.x2:
-            return self.m1 * x
+            return self.m1 * (x - self.x1)
         elif self.x2 < x <= self.x3:
             return self.m2 * (x - self.x2) + 1
         else:
