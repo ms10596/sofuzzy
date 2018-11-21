@@ -5,9 +5,9 @@ class Triangle:
         self.x3 = values[2]
         self.name = name
 
-        self.m1 = 1 / (self.x2 - self.x1)
-        self.m2 = -1 / (self.x3 - self.x2)
-        print(self.m1, self.m2)
+        self.m1 = 1 / (self.x2 + 0.1 - self.x1)
+        self.m2 = -1 / (self.x3 + 0.1 - self.x2)
+        # print(self.m1, self.m2)
 
     def predict(self, x):
         if self.x1 <= x <= self.x2:

@@ -3,7 +3,7 @@ from triangle import Triangle
 
 
 class Variable:
-    def __init__(self, name, value):
+    def __init__(self, name, value=-1):
         self.name = name
         self.value = value
 
@@ -16,3 +16,6 @@ class Variable:
         else:
             new_fuzzy_set = Triangle(name=name, values=values)
             self.fuzzy_set.append(new_fuzzy_set)
+
+    def __str__(self):
+        return self.name
