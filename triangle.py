@@ -1,8 +1,9 @@
 class Triangle:
-    def __init__(self, x1, x2, x3):
+    def __init__(self, x1, x2, x3, name):
         self.x1 = x1
         self.x2 = x2
         self.x3 = x3
+        self.name = name
 
         self.m1 = 1 / (x2 - x1)
         self.m2 = -1 / (x3 - x2)

@@ -1,9 +1,10 @@
 class Trapezoid:
-    def __init__(self, x1, x2, x3, x4):
+    def __init__(self, x1, x2, x3, x4, name):
         self.x1 = x1
         self.x2 = x2
         self.x3 = x3
         self.x4 = x4
+        self.name = name
 
         self.m1 = 1 / (self.x2 + 0.1 - self.x1)
         self.m2 = 0
