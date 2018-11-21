@@ -1,12 +1,12 @@
 class Triangle:
-    def __init__(self, x1, x2, x3, name):
-        self.x1 = x1
-        self.x2 = x2
-        self.x3 = x3
+    def __init__(self, values, name):
+        self.x1 = values[0]
+        self.x2 = values[1]
+        self.x3 = values[2]
         self.name = name
 
-        self.m1 = 1 / (x2 - x1)
-        self.m2 = -1 / (x3 - x2)
+        self.m1 = 1 / (self.x2 - self.x1)
+        self.m2 = -1 / (self.x3 - self.x2)
         print(self.m1, self.m2)
 
     def predict(self, x):
