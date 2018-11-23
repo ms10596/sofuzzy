@@ -17,5 +17,15 @@ class Variable:
             new_fuzzy_set = Triangle(name=name, values=values)
             self.fuzzy_set.append(new_fuzzy_set)
 
+    def fuzzify(self):
+        print(self.name, "=", self.value)
+        for i in self.fuzzy_set:
+            print('\t', i.name, "=", round(i.predict(self.value), 2))
+
+    def fuzz(self, set_name):
+        for i in self.fuzzy_set:
+            if i.name == set_name:
+                return i.predict(self.value)
+
     def __str__(self):
         return self.name + str([str(i) for i in self.fuzzy_set])

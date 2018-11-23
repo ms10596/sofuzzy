@@ -1,6 +1,6 @@
 from variable import Variable
 from premise import Premise
-from statement import Statement
+from rule import Rule
 
 if __name__ == '__main__':
     f = open('sample.txt')
@@ -34,17 +34,21 @@ if __name__ == '__main__':
     variables.append(new_var)
 
     rules_n = int(f.readline())
-    statements = []
+    rules = []
     for i in range(rules_n):
-        new_statement = Statement()
+        new_rule = Rule()
         line = f.readline().split()
         premises_n = int(line[0])
-        first_premise = Premise(line[1], line[3])
-        gate = line[4]
-        second_premise = Premise(line[5], line[7])
-        output_premise = Premise(line[8], line[10])
-        new_statement.add_premise(first_premise)
-        new_statement.add_premise(second_premise)
-        new_statement.add_premise(output_premise)
-        statements.append(new_statement)
-    print([str(i) for i in statements])
+        for j in range(premises_n):
+            first_premise = Premise(line[1 + j * 4], line[3 + j * 4])
+            new_rule.add_premise(first_premise)
+            if j < premises_n - 1:
+                gate = line[4 + j]
+                new_rule.add_premise(gate)
+        last_premise = Premise(line[len(line) - 3], line[len(line) - 1])
+        new_rule.add_premise(last_premise)
+
+        rules.append(new_rule)
+    print("fuzzification: ")
+    # [i.fuzzify() for i in variables]
+    # print(variables[0].fuzz('Right'))

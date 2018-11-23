@@ -1,4 +1,4 @@
-class Statement:
+class Rule:
     def __init__(self):
         self.premises = []
         self.gates = []
