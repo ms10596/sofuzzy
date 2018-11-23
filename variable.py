@@ -10,7 +10,7 @@ class Variable:
         self.fuzzy_set = []
 
     def add_fuzzy_set(self, name, values):
-        if name == "trapezoidal":
+        if len(values) == 4:
             new_fuzzy_set = Trapezoid(name=name, values=values)
             self.fuzzy_set.append(new_fuzzy_set)
         else:
@@ -18,4 +18,4 @@ class Variable:
             self.fuzzy_set.append(new_fuzzy_set)
 
     def __str__(self):
-        return self.name
+        return self.name + str([str(i) for i in self.fuzzy_set])

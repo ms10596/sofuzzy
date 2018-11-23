@@ -17,6 +17,9 @@ class Triangle:
         else:
             return 0
 
+    def __str__(self):
+        return "Triangle " + str([self.x1, self.x2, self.x3])
+
 
 if __name__ == '__main__':
     t = Triangle(0, 25, 1000)

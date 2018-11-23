@@ -20,6 +20,9 @@ class Trapezoid:
         else:
             return 0
 
+    def __str__(self):
+        return "Trapezoid " + str([self.x1, self.x2, self.x3, self.x4])
+
 
 if __name__ == '__main__':
     t = Trapezoid(65, 90, 100, 100)
