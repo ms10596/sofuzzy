@@ -3,6 +3,9 @@ class Triangle:
         self.x1 = values[0]
         self.x2 = values[1]
         self.x3 = values[2]
+
+        self.y1 = self.y3 = 0
+        self.y2 = 1
         self.name = name
 
         self.m1 = 1 / (self.x2 + 0.1 - self.x1)
@@ -16,6 +19,9 @@ class Triangle:
             return self.m2 * (x - self.x2) + 1
         else:
             return 0
+
+    def area(self):
+        return 0.5 * (self.x1 * self.y2 - self.x2 * self.y1 + self.x2 * self.y3 - self.x3 * self.y2)
 
     def __str__(self):
         return "Triangle " + str([self.x1, self.x2, self.x3])

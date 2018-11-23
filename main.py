@@ -1,6 +1,8 @@
 from variable import Variable
 from premise import Premise
 from rule import Rule
+from inference import inference
+
 
 if __name__ == '__main__':
     f = open('sample.txt')
@@ -49,6 +51,7 @@ if __name__ == '__main__':
         new_rule.add_premise(last_premise)
 
         rules.append(new_rule)
-    print("fuzzification: ")
-    # [i.fuzzify() for i in variables]
+    inference(rules, variables)
+    # print("fuzzification: ")
+    [i.fuzzify() for i in variables]
     # print(variables[0].fuzz('Right'))

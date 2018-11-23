@@ -6,6 +6,8 @@ class Trapezoid:
         self.x4 = values[3]
         self.name = name
 
+        self.y1 = self.y4 = 0
+        self.y2 = self.y3 = 1
         self.m1 = 1 / (self.x2 + 0.1 - self.x1)
         self.m2 = 0
         self.m3 = -1 / (self.x4 + 0.1 - self.x3)
@@ -19,6 +21,10 @@ class Trapezoid:
             return self.m3 * (x - self.x3) + 1
         else:
             return 0
+
+    def area(self):
+        return 0.5 * (
+                    self.x1 * self.y2 - self.x2 * self.y1 + self.x2 * self.y3 - self.x3 * self.y2 + self.x3 * self.y4 - self.x4 * self.y3)
 
     def __str__(self):
         return "Trapezoid " + str([self.x1, self.x2, self.x3, self.x4])
