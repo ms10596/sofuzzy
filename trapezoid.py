@@ -1,36 +1,49 @@
 class Trapezoid:
     def __init__(self, values, name):
-        self.x1 = values[0]
-        self.x2 = values[1]
-        self.x3 = values[2]
-        self.x4 = values[3]
+        self.x = values
         self.name = name
 
-        self.y1 = self.y4 = 0
-        self.y2 = self.y3 = 1
-        self.m1 = 1 / (self.x2 + 0.1 - self.x1)
+        self.y = [0, 1, 1, 0]
+        self.m1 = 1 / (self.x[1] + 0.1 - self.x[0])
         self.m2 = 0
-        self.m3 = -1 / (self.x4 + 0.1 - self.x3)
+        self.m3 = -1 / (self.x[3] + 0.1 - self.x[2])
 
     def predict(self, x):
-        if self.x1 <= x < self.x2:
-            return self.m1 * (x - self.x1)
-        elif self.x2 <= x <= self.x3:
+        if self.x[0] <= x < self.x[1]:
+            return self.m1 * (x - self.x[0])
+        elif self.x[1] <= x <= self.x[2]:
             return 1
-        elif self.x3 < x <= self.x4:
-            return self.m3 * (x - self.x3) + 1
+        elif self.x[2] < x <= self.x[3]:
+            return self.m3 * (x - self.x[2]) + 1
         else:
             return 0
 
     def area(self):
-        return 0.5 * (
-                    self.x1 * self.y2 - self.x2 * self.y1 + self.x2 * self.y3 - self.x3 * self.y2 + self.x3 * self.y4 - self.x4 * self.y3)
+        total = 0
+        for i in range(len(self.x) - 1):
+            total += (self.x[i] * self.y[i + 1] - self.x[i + 1] * self.y[i])
+        return abs(total) / 2
+
+    def center_x(self):
+        total = 0
+        for i in range(len(self.x) - 1):
+            total += (self.x[i] + self.x[i + 1]) * abs(self.x[i] * self.y[i + 1] - self.x[i + 1] * self.y[i])
+        return total / (6 * self.area())
+
+    def center_y(self):
+        total = 0
+        for i in range(len(self.x) - 1):
+            total += (self.y[i] + self.y[i + 1]) * abs(self.x[i] * self.y[i + 1] - self.x[i + 1] * self.y[i])
+        return total / (6 * self.area())
 
     def __str__(self):
-        return "Trapezoid " + str([self.x1, self.x2, self.x3, self.x4])
+        return "Trapezoid " + str([self.x[0], self.x[1], self.x[2], self.x[3]])
 
 
 if __name__ == '__main__':
-    t = Trapezoid(65, 90, 100, 100)
-    for i in range(0, 103):
-        print(i, t.predict(i))
+    t = Trapezoid((0, 0, 10, 10), "trap")
+    print(t.area())
+    print(t.center_x())
+    print(t.center_y())
+    # for i in range(0, 103):
+    #     print(i, t.predict(i))
