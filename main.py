@@ -1,11 +1,10 @@
 from variable import Variable
 from premise import Premise
 from rule import Rule
-from inference import inference
+from defuzzification import defuzzify
 
 
-if __name__ == '__main__':
-    f = open('sample.txt')
+def read_variables(f):
     variables = []
     vars_n = int(f.readline())
     for i in range(vars_n):
@@ -34,9 +33,13 @@ if __name__ == '__main__':
         new_var.add_fuzzy_set(name, values)
 
     variables.append(new_var)
+    return variables
 
-    rules_n = int(f.readline())
+
+def read_rules(f):
     rules = []
+    rules_n = int(f.readline())
+
     for i in range(rules_n):
         new_rule = Rule()
         line = f.readline().split()
@@ -51,7 +54,16 @@ if __name__ == '__main__':
         new_rule.add_premise(last_premise)
 
         rules.append(new_rule)
-    inference(rules, variables)
-    # print("fuzzification: ")
+    return rules
+
+
+if __name__ == '__main__':
+    f = open('sample.txt')
+    variables = read_variables(f)
+    rules = read_rules(f)
+    print("Fuzzification:")
     [i.fuzzify() for i in variables]
-    # print(variables[0].fuzz('Right'))
+    print("\n\nInference:")
+    [i.print_evaluate(variables) for i in rules]
+    print("\n\nDefuzzification:")
+    defuzzify(rules, variables)

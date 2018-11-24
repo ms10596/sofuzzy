@@ -1,5 +1,5 @@
-from trapezoid import Trapezoid
-from triangle import Triangle
+from shapes.trapezoid import Trapezoid
+from shapes.triangle import Triangle
 
 
 class Variable:
@@ -26,6 +26,12 @@ class Variable:
         for i in self.fuzzy_set:
             if i.name == set_name:
                 return i.predict(self.value)
+
+    def get_fuzzy_set(self, set_name):
+        for i in self.fuzzy_set:
+            if i.name == set_name:
+                return i
+        return None
 
     def __str__(self):
         return self.name + str([str(i) for i in self.fuzzy_set])

@@ -12,7 +12,7 @@ class Premise:
 
     def evaluate(self, variables):
         var = find_var_by_name(self.var, variables)
-        return var.fuzz(self.value)
+        return round(var.fuzz(self.value), 2)
 
     def __str__(self):
         return self.var + "=" + self.value
